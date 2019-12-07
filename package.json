@@ -1,6 +1,6 @@
 {
   "name": "@lopatnov/rollup-plugin-uglify",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Rollup plugin. Javascript code minifier",
   "author": "lopatnov",
   "license": "Apache-2.0",

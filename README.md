@@ -2,7 +2,7 @@
 
 [![NPM version](https://badge.fury.io/js/%40lopatnov%2Frollup-plugin-uglify.svg)](https://www.npmjs.com/package/@lopatnov/rollup-plugin-uglify)
 ![License](https://img.shields.io/github/license/lopatnov/rollup-plugin-uglify)
-[![Twitter](https://img.shields.io/twitter/url?url=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Frollup-plugin-uglify)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Frollup-plugin-uglify)
+[![Twitter](https://img.shields.io/twitter/url?url=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F%40lopatnov%2Frollup-plugin-uglify)](https://img.shields.io/twitter/url?url=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F%40lopatnov%2Frollup-plugin-uglify)
 
 A rollup plugin to minify javascript with UglifyJS
 
@@ -11,23 +11,35 @@ A rollup plugin to minify javascript with UglifyJS
 [![https://nodei.co/npm/@lopatnov/rollup-plugin-uglify.png?downloads=true&downloadRank=true&stars=true](https://nodei.co/npm/@lopatnov/rollup-plugin-uglify.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/@lopatnov/rollup-plugin-uglify)
 
 ```shell
-@lopatnov/rollup-plugin-uglify
+npm install @lopatnov/rollup-plugin-uglify
 ```
 
 ## Import package to the project
 
+TypeScript
+
 ```typescript
-import workerFromString from 'rollup-plugin-uglify';
+import uglify from "@lopatnov/rollup-plugin-uglify";
 ```
-or
+
+JavaScript
+
 ```javascript
-var workerFromString = require("rollup-plugin-uglify")
+var uglify = require("@lopatnov/rollup-plugin-uglify");
 ```
 
-## Convert String values into Worker
+## How to use plugin
+
+File rollup.config.ts
 
 ```typescript
-workerFromString(...textValues: string[]) => Worker
+export default {
+  //...
+  plugins: [
+    //...
+    uglify()
+  ]
+};
 ```
 
 # Rights and Agreements
