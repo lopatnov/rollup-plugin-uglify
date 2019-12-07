@@ -11,13 +11,13 @@ export default
     output: [
       {
         file: pkg.main,
-        format: "umd",
+        format: "cjs",
         name: pkg.umdName,
         sourcemap: true
       },
       {
         file: pkg.module,
-        format: "es",
+        format: "esm",
         sourcemap: true
       }
     ],

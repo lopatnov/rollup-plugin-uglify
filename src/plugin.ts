@@ -3,7 +3,7 @@ import { minify, MinifyOptions } from 'uglify-js';
 export default function uglify (options: MinifyOptions = {}) {
   return {
     name: 'uglify',
-    transform(code) {
+    transform(code: any) {
       if (typeof options.sourceMap === 'undefined') {
         options.sourceMap = true;
       }
