@@ -4,7 +4,7 @@
 ![License](https://img.shields.io/github/license/lopatnov/rollup-plugin-uglify)
 [![Twitter](https://img.shields.io/twitter/url?url=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F%40lopatnov%2Frollup-plugin-uglify)](https://img.shields.io/twitter/url?url=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F%40lopatnov%2Frollup-plugin-uglify)
 
-A rollup plugin to minify javascript with UglifyJS
+A rollup plugin to minify javascript
 
 # Install
 
