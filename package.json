@@ -1,0 +1,50 @@
+{
+  "name": "@lopatnov/rollup-plugin-uglify",
+  "version": "1.0.0",
+  "description": "Rollup plugin. Javascript code minifier",
+  "author": "lopatnov",
+  "license": "Apache-2.0",
+  "homepage": "https://lopatnov.github.io/rollup-plugin-uglify/",
+  "umdName": "uglify",
+  "source": "src/plugin.ts",
+  "main": "dist/plugin.js",
+  "main_min": "dist/plugin.min.js",
+  "module": "dist/plugin.es.js",
+  "types": "dist/plugin.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lopatnov/rollup-plugin-uglify.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lopatnov/rollup-plugin-uglify/issues"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -cw",
+    "test": "jest",
+    "configure-npm": "node ./set-registry.js -s https://registry.npmjs.org",
+    "configure-gpr": "node ./set-registry.js -s https://npm.pkg.github.com"
+  },
+  "dependencies": {
+    "uglify-js": "^3.7.1"
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@types/jest": "^24.0.23",
+    "@types/rollup": "^0.54.0",
+    "@types/typescript": "^2.0.0",
+    "@types/uglify-js": "^3.0.4",
+    "jest": "^24.9.0",
+    "jest-config": "^24.9.0",
+    "rollup": "^1.27.8",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-sourcemaps": "^0.4.2",
+    "rollup-plugin-typescript2": "^0.25.3",
+    "ts-jest": "^24.2.0",
+    "typescript": "^3.7.3"
+  }
+}
