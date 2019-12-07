@@ -1,6 +1,6 @@
 {
   "name": "@lopatnov/rollup-plugin-uglify",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Rollup plugin. Javascript code minifier",
   "author": "lopatnov",
   "license": "Apache-2.0",
@@ -22,11 +22,9 @@
     "build": "rollup -c",
     "watch": "rollup -cw",
     "test": "jest",
+    "prepare": "npm i --no-save --no-package-lock uglify-js",
     "configure-npm": "node ./set-registry.js -s https://registry.npmjs.org",
     "configure-gpr": "node ./set-registry.js -s https://npm.pkg.github.com"
-  },
-  "dependencies": {
-    "uglify-js": "^3.7.1"
   },
   "files": [
     "dist"
@@ -46,5 +44,8 @@
     "rollup-plugin-typescript2": "^0.25.3",
     "ts-jest": "^24.2.0",
     "typescript": "^3.7.3"
+  },
+  "peerDependencies": {
+    "uglify-js": "^3.7.1"
   }
 }
