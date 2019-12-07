@@ -5,33 +5,32 @@ import resolve from "rollup-plugin-node-resolve";
 
 import pkg from "./package.json";
 
-export default
-  {
-    input: pkg.source,
-    output: [
-      {
-        file: pkg.main,
-        format: "cjs",
-        name: pkg.umdName,
-        sourcemap: true
-      },
-      {
-        file: pkg.module,
-        format: "esm",
-        sourcemap: true
-      }
-    ],
-    external: [
-      ...Object.keys(pkg.devDependencies || {}),
-      ...Object.keys(pkg.peerDependencies || {})
-    ],
+export default {
+  input: pkg.source,
+  output: [
+    {
+      file: pkg.main,
+      format: "umd",
+      name: pkg.umdName,
+      sourcemap: true
+    },
+    {
+      file: pkg.module,
+      format: "esm",
+      sourcemap: true
+    }
+  ],
+  external: [
+    ...Object.keys(pkg.devDependencies || {}),
+    ...Object.keys(pkg.peerDependencies || {})
+  ],
 
-    plugins: [
-      json(),
-      typescript({
-        typescript: require("typescript")
-      }),
-      resolve(),
-      commonjs()
-    ]
-  };
+  plugins: [
+    json(),
+    typescript({
+      typescript: require("typescript")
+    }),
+    resolve(),
+    commonjs()
+  ]
+};

@@ -1,14 +1,26 @@
-import { minify, MinifyOptions } from 'uglify-js';
+import { Plugin } from 'rollup';
+import { minify, MinifyOptions } from "terser";
+import { createFilter } from "rollup-pluginutils";
 
-export default function uglify (options: MinifyOptions = {}) {
+export interface IUglifyOptions extends MinifyOptions {
+  include?: string | RegExp;
+  exclude?: string | RegExp;
+}
+
+function uglify(options: IUglifyOptions = {}): Plugin {
+  const filter = createFilter(options.include, options.exclude);
   return {
-    name: 'uglify',
-    transform(code: any) {
-      if (typeof options.sourceMap === 'undefined') {
+    name: "uglify",
+    transform(code: any, id: any) {
+      if (!filter(id)) {
+        return;
+      }
+
+      if (typeof options.sourceMap === "undefined") {
         options.sourceMap = true;
       }
 
-      if (typeof options.warnings === 'undefined') {
+      if (typeof options.warnings === "undefined") {
         options.warnings = true;
       }
 
@@ -19,7 +31,7 @@ export default function uglify (options: MinifyOptions = {}) {
       }
 
       if (result.warnings) {
-        result.warnings.forEach((warning) => {
+        result.warnings.forEach(warning => {
           this.warn(warning);
         });
       }
@@ -27,7 +39,9 @@ export default function uglify (options: MinifyOptions = {}) {
       return {
         code: result.code,
         map: result.map
-      };
+      } as any;
     }
   };
 }
+
+export default uglify;
