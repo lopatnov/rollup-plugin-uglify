@@ -6,6 +6,15 @@
 
 A rollup plugin to minify javascript
 
+# Requirements
+
+Install rollup and terser first.
+
+```shell
+npm install rollup
+npm install terser
+```
+
 # Install
 
 [![https://nodei.co/npm/@lopatnov/rollup-plugin-uglify.png?downloads=true&downloadRank=true&stars=true](https://nodei.co/npm/@lopatnov/rollup-plugin-uglify.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/@lopatnov/rollup-plugin-uglify)
