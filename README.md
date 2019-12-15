@@ -11,8 +11,8 @@ A rollup plugin to minify javascript
 Install rollup and terser first.
 
 ```shell
-npm install rollup
-npm install terser
+npm install rollup --save-dev
+npm install terser --save-dev
 ```
 
 # Install
