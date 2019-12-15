@@ -20,7 +20,7 @@ npm install terser --save-dev
 [![https://nodei.co/npm/@lopatnov/rollup-plugin-uglify.png?downloads=true&downloadRank=true&stars=true](https://nodei.co/npm/@lopatnov/rollup-plugin-uglify.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/@lopatnov/rollup-plugin-uglify)
 
 ```shell
-npm install @lopatnov/rollup-plugin-uglify
+npm install @lopatnov/rollup-plugin-uglify --save-dev
 ```
 
 ## Import package to the project
