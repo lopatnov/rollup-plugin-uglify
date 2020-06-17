@@ -45,7 +45,7 @@
     "typescript": "^3.9.5"
   },
   "peerDependencies": {
-    "rollup": ">=1.0.0",
+    "rollup": ">=2.0.0",
     "terser": ">=4.0.0"
   },
   "dependencies": {
