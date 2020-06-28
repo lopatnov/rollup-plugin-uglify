@@ -23,7 +23,7 @@ npm install terser --save-dev
 npm install @lopatnov/rollup-plugin-uglify --save-dev
 ```
 
-For `rollup 1.x.x`, please install `@lopatnov/rollup-plugin-uglify@1.2.1` version
+For `rollup 1.x.x` or `node 8.x.x` please install `@lopatnov/rollup-plugin-uglify@1.2.1` version
 
 ### Import package to the project
 
