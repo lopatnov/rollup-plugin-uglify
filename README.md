@@ -51,6 +51,19 @@ export default {
 };
 ```
 
+#### Options
+
+`uglify` function has optional argument `options: IUglifyOptions`.
+
+`IUglifyOptions` is an interface, that extends [`MinifyOptions`][minify-options] of `terser` package.
+
+`IUglifyOptions` contains:
+
+- `include?: string | RegExp`
+- `exclude?: string | RegExp`
+
+A valid minimatch pattern, or array of patterns to include / exclude files. If `include` is omitted or has zero length, filter will return true by default. Otherwise, an ID must match one or more of the minimatch patterns, and must not match any of the `exclude` patterns.
+
 ## Changelog
 
 | Version | Changes |
@@ -59,6 +72,9 @@ export default {
 
 ## Rights and Agreements
 
-License [Apache-2.0](https://github.com/lopatnov/rollup-plugin-uglify/blob/master/LICENSE)
+License [Apache-2.0][license]
 
-Copyright 2019 Oleksandr Lopatnov
+Copyright 2019-2020 Oleksandr Lopatnov
+
+[minify-options]: https://terser.org/docs/api-reference#minify-options-structure
+[license]: https://github.com/lopatnov/rollup-plugin-uglify/blob/master/LICENSE
