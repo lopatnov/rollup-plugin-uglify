@@ -51,9 +51,14 @@ export default {
 };
 ```
 
+## Changelog
+
+| Version | Changes |
+|--:|:--|
+| 2.1.0 | Added behavior for async terser result |
+
 ## Rights and Agreements
 
 License [Apache-2.0](https://github.com/lopatnov/rollup-plugin-uglify/blob/master/LICENSE)
 
 Copyright 2019 Oleksandr Lopatnov
-
