@@ -1,6 +1,6 @@
 {
   "name": "@lopatnov/rollup-plugin-uglify",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Rollup plugin. Javascript code minifier",
   "author": "lopatnov",
   "license": "Apache-2.0",
@@ -30,22 +30,22 @@
     "dist"
   ],
   "devDependencies": {
-    "@types/jest": "^26.0.0",
+    "@types/jest": "^26.0.9",
     "@types/rollup": "^0.54.0",
     "@types/typescript": "^2.0.0",
-    "jest": "^26.0.1",
-    "jest-config": "^26.0.1",
-    "rollup": "^2.16.1",
+    "jest": "^26.2.2",
+    "jest-config": "^26.2.2",
+    "rollup": "^2.23.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-sourcemaps": "^0.6.2",
     "rollup-plugin-typescript2": "^0.27.1",
-    "ts-jest": "^26.1.0",
-    "typescript": "^3.9.5"
+    "ts-jest": "^26.1.4",
+    "typescript": "^3.9.7"
   },
   "peerDependencies": {
-    "rollup": ">=2.0.0",
+    "rollup": ">=1.0.0",
     "terser": ">=4.0.0"
   },
   "dependencies": {

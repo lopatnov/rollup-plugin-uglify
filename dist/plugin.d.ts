@@ -1,13 +1,8 @@
-import { MinifyOptions } from 'terser';
+import { Plugin } from 'rollup';
+import { MinifyOptions } from "terser";
 export interface IUglifyOptions extends MinifyOptions {
     include?: string | RegExp;
     exclude?: string | RegExp;
 }
-declare function uglify(options?: IUglifyOptions): {
-    name: string;
-    transform(code: any, id: any): {
-        code: string;
-        map: string | import("source-map").RawSourceMap;
-    };
-};
+declare function uglify(options?: IUglifyOptions): Plugin;
 export default uglify;
