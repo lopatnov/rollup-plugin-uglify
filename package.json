@@ -11,6 +11,14 @@
   "main_min": "dist/plugin.min.js",
   "module": "dist/plugin.es.js",
   "types": "dist/plugin.d.ts",
+  "keywords": [
+    "rollup",
+    "plugin",
+    "rollup-plugin",
+    "minification",
+    "compression",
+    "typescript"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lopatnov/rollup-plugin-uglify.git"
