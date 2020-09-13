@@ -1,5 +1,6 @@
 # @lopatnov/rollup-plugin-uglify
 
+![npm](https://img.shields.io/npm/dt/@lopatnov/rollup-plugin-uglify)
 [![NPM version](https://badge.fury.io/js/%40lopatnov%2Frollup-plugin-uglify.svg)](https://www.npmjs.com/package/@lopatnov/rollup-plugin-uglify)
 ![License](https://img.shields.io/github/license/lopatnov/rollup-plugin-uglify)
 [![Twitter](https://img.shields.io/twitter/url?url=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F%40lopatnov%2Frollup-plugin-uglify)](https://twitter.com/intent/tweet?text=Wow:&url=https://www.npmjs.com/package/@lopatnov/rollup-plugin-uglify)
