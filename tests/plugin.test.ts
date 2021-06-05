@@ -6,7 +6,8 @@ describe("rollup-plugin-uglify", () => {
     let bundle = await rollup({
       input: "tests/sample.js",
       plugins: [uglify({
-          compress: true
+          compress: true,
+          ecma: 2020
       })]
     });
 

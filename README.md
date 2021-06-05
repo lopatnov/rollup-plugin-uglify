@@ -64,12 +64,6 @@ export default {
 
 A valid minimatch pattern, or array of patterns to include / exclude files. If `include` is omitted or has zero length, filter will return true by default. Otherwise, an ID must match one or more of the minimatch patterns, and must not match any of the `exclude` patterns.
 
-## Changelog
-
-| Version | Changes |
-|--:|:--|
-| 2.1.0 | Added behavior for async terser result |
-
 ## Rights and Agreements
 
 License [Apache-2.0][license]
