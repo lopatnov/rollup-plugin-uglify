@@ -39,5 +39,5 @@ function uglify(options) {
     };
 }
 
-export default uglify;
+export { uglify as default };
 //# sourceMappingURL=plugin.es.js.map

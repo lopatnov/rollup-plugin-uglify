@@ -2,7 +2,7 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('terser'), require('rollup-pluginutils')) :
   typeof define === 'function' && define.amd ? define(['terser', 'rollup-pluginutils'], factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.uglify = factory(global.terser, global.rollupPluginutils));
-}(this, (function (terser, rollupPluginutils) { 'use strict';
+})(this, (function (terser, rollupPluginutils) { 'use strict';
 
   function uglify(options) {
       if (options === void 0) { options = {}; }
@@ -44,5 +44,5 @@
 
   return uglify;
 
-})));
+}));
 //# sourceMappingURL=plugin.js.map
