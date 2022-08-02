@@ -1,5 +1,4 @@
 import "core-js";
-import "core-js/features/global-this";
 import { rollup } from "rollup";
 import uglify from "../src/plugin";
 

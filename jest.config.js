@@ -1,16 +1,4 @@
 require("core-js");
-require("core-js/features/global-this");
-
-const getGlobal = function () {
-  if (typeof self !== 'undefined') { return self; }
-  if (typeof window !== 'undefined') { return window; }
-  if (typeof global !== 'undefined') { return global; }
-  throw new Error('unable to locate global object');
-};
-
-try {
-  getGlobal().globalThis = getGlobal();
-} finally {}
 
 // For a detailed explanation regarding each configuration property, visit:
 // https://jestjs.io/docs/en/configuration.html
