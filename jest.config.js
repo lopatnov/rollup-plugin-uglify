@@ -1,4 +1,5 @@
 require("core-js");
+require("core-js/features/global-this");
 
 // For a detailed explanation regarding each configuration property, visit:
 // https://jestjs.io/docs/en/configuration.html
