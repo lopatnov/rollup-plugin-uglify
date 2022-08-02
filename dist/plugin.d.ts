@@ -1,4 +1,4 @@
-import { Plugin } from 'rollup';
+import { Plugin } from "rollup";
 import { MinifyOptions } from "terser";
 export interface IUglifyOptions extends MinifyOptions {
     include?: string | RegExp;

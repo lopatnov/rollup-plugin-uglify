@@ -1,4 +1,4 @@
-import { Plugin, TransformPluginContext, TransformResult } from 'rollup';
+import { Plugin, TransformPluginContext, TransformResult } from "rollup";
 import { minify, MinifyOptions } from "terser";
 import { createFilter } from "rollup-pluginutils";
 
@@ -39,12 +39,12 @@ function uglify(options: IUglifyOptions = {}): Plugin {
 
         return {
           code: (result as any).code,
-          map: (result as any).map
+          map: (result as any).map,
         } as TransformResult;
       } else {
         return result as Promise<TransformResult>;
       }
-    }
+    },
   };
 }
 

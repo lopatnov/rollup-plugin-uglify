@@ -32,13 +32,13 @@
                   }
                   return {
                       code: result.code,
-                      map: result.map
+                      map: result.map,
                   };
               }
               else {
                   return result;
               }
-          }
+          },
       };
   }
 

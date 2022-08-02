@@ -38,6 +38,9 @@
   "files": [
     "dist"
   ],
+  "dependencies": {
+    "core-js": "^3.24.1"
+  },
   "devDependencies": {
     "@types/jest": "^28.1.6",
     "@types/rollup": "^0.54.0",
