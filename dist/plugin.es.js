@@ -1,5 +1,5 @@
 import { minify } from 'terser';
-import { createFilter } from 'rollup-pluginutils';
+import { createFilter } from '@rollup/pluginutils';
 
 function uglify(options) {
     if (options === void 0) { options = {}; }

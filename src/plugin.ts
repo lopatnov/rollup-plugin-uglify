@@ -1,6 +1,6 @@
 import { Plugin, TransformPluginContext, TransformResult } from "rollup";
 import { minify, MinifyOptions } from "terser";
-import { createFilter } from '@rollup/pluginutils';
+import { createFilter } from "@rollup/pluginutils";
 
 export interface IUglifyOptions extends MinifyOptions {
   include?: string | RegExp;

@@ -1,12 +1,12 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('terser'), require('rollup-pluginutils')) :
-  typeof define === 'function' && define.amd ? define(['terser', 'rollup-pluginutils'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.uglify = factory(global.terser, global.rollupPluginutils));
-})(this, (function (terser, rollupPluginutils) { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('terser'), require('@rollup/pluginutils')) :
+  typeof define === 'function' && define.amd ? define(['terser', '@rollup/pluginutils'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.uglify = factory(global.terser, global.pluginutils));
+})(this, (function (terser, pluginutils) { 'use strict';
 
   function uglify(options) {
       if (options === void 0) { options = {}; }
-      var filter = rollupPluginutils.createFilter(options.include, options.exclude);
+      var filter = pluginutils.createFilter(options.include, options.exclude);
       return {
           name: "uglify",
           transform: function (code, id) {
