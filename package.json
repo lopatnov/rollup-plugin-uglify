@@ -39,10 +39,10 @@
     "dist"
   ],
   "dependencies": {
+    "@rollup/pluginutils": "^4.2.1",
     "core-js": "^3.24.1"
   },
   "devDependencies": {
-    "@rollup/pluginutils": "^4.2.1",
     "@types/jest": "^28.1.7",
     "@types/rollup": "^0.54.0",
     "@types/rollup-plugin-commonjs": "^9.3.1",
