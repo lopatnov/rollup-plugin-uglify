@@ -30,7 +30,9 @@ export default {
     typescript({
       typescript: require("typescript")
     }),
-    resolve(),
-    commonjs()
+    resolve({
+      preferBuiltins: true
+    }),
+    commonjs(),
   ]
 };

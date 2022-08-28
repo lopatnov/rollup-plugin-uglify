@@ -30,13 +30,13 @@ npm install @lopatnov/rollup-plugin-uglify --save-dev
 
 ### Import package to the project
 
-TypeScript
+ESM import
 
 ```typescript
 import uglify from "@lopatnov/rollup-plugin-uglify";
 ```
 
-JavaScript
+CJS require
 
 ```javascript
 var uglify = require("@lopatnov/rollup-plugin-uglify");
@@ -82,6 +82,14 @@ export default {
 - `exclude?: string | RegExp`
 
 A valid minimatch pattern, or array of patterns to include / exclude files. If `include` is omitted or has zero length, filter will return true by default. Otherwise, an ID must match one or more of the minimatch patterns, and must not match any of the `exclude` patterns.
+
+## Troubleshooting
+
+### Issue 13: cannot find module @rollup/pluginutils
+
+Versions migration: 2.1.2 -> 2.1.4
+
+[rollup-pluginutils](https://github.com/rollup/rollup-pluginutils) has moved and is now available at [@rollup/pluginutils](https://www.npmjs.com/package/@rollup/pluginutils). The best way is to update dependency to `@rollup/pluginutils` as in [documentation](https://rollupjs.org/guide/en/#transformers) or use version `2.1.2` that don't have conflict with `rollup-pluginutils`.
 
 ## Donate
 
