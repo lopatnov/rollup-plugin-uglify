@@ -1,5 +1,7 @@
-import { minify } from 'terser';
-import path, { win32, posix, isAbsolute, resolve } from 'path';
+'use strict';
+
+var terser = require('terser');
+var path = require('path');
 
 function createCommonjsModule(fn, module) {
 	return module = { exports: {} }, fn(module, module.exports), module.exports;
@@ -2141,22 +2143,22 @@ function ensureArray(thing) {
 }
 
 const normalizePath = function normalizePath(filename) {
-    return filename.split(win32.sep).join(posix.sep);
+    return filename.split(path.win32.sep).join(path.posix.sep);
 };
 
 function getMatcherString(id, resolutionBase) {
-    if (resolutionBase === false || isAbsolute(id) || id.startsWith('*')) {
+    if (resolutionBase === false || path.isAbsolute(id) || id.startsWith('*')) {
         return normalizePath(id);
     }
     // resolve('') is valid and will default to process.cwd()
-    const basePath = normalizePath(resolve(resolutionBase || ''))
+    const basePath = normalizePath(path.resolve(resolutionBase || ''))
         // escape all possible (posix + win) path characters that might interfere with regex
         .replace(/[-^$*+?.()|[\]{}]/g, '\\$&');
     // Note that we use posix.join because:
     // 1. the basePath has been normalized to use /
     // 2. the incoming glob (id) matcher, also uses /
     // otherwise Node will force backslash (\) on windows
-    return posix.join(basePath, normalizePath(id));
+    return path.posix.join(basePath, normalizePath(id));
 }
 const createFilter = function createFilter(include, exclude, options) {
     const resolutionBase = options && options.resolve;
@@ -2214,7 +2216,7 @@ function uglify(options) {
             if (typeof options.warnings === "undefined") {
                 options.warnings = true;
             }
-            var result = minify(code, options);
+            var result = terser.minify(code, options);
             if (!(result instanceof Promise)) {
                 if (result.error) {
                     throw result.error;
@@ -2236,5 +2238,5 @@ function uglify(options) {
     };
 }
 
-export { uglify as default };
+module.exports = uglify;
 //# sourceMappingURL=plugin.es.js.map

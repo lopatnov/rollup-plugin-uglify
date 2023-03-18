@@ -95,7 +95,7 @@ Versions migration: 2.1.2 -> 2.1.4
 
 [![Charity Health][charity_health]][dobro]
 
-Open source software is just a hobby. I am making it just for fun. A small amount of help will be more significant for charitable foundations. I propose to pay attention to the various local funds or to the volunteers in my country. I hope this will make someone's life better.
+Open source software is just a hobby. I am making it just for fun. A small amount of help will be more significant for non-military charitable foundations. I propose to pay attention to the various local funds or to the volunteers in my country. I hope this will make someone's life better.
 
 ## Rights and Agreements [![LinkedIn][linkedinbage]][linkedin]
 
@@ -103,7 +103,7 @@ Contact me in LinkedIn, I will consider profitable business offers. I am Compute
 
 License [Apache-2.0][license]
 
-Copyright 2019-2022 Oleksandr Lopatnov
+Copyright 2019-2023 Oleksandr Lopatnov
 
 [minify-options]: https://terser.org/docs/api-reference#minify-options-structure
 [license]: https://github.com/lopatnov/rollup-plugin-uglify/blob/master/LICENSE

@@ -3,7 +3,7 @@ import typescript from "rollup-plugin-typescript2";
 import commonjs from "rollup-plugin-commonjs";
 import resolve from "rollup-plugin-node-resolve";
 
-import pkg from "./package.json";
+import pkg from "./package.json" assert { type: "json" };
 
 export default {
   input: pkg.source,
@@ -16,7 +16,7 @@ export default {
     },
     {
       file: pkg.module,
-      format: "esm",
+      format: "cjs",
       sourcemap: true
     }
   ],
@@ -27,9 +27,7 @@ export default {
 
   plugins: [
     json(),
-    typescript({
-      typescript: require("typescript")
-    }),
+    typescript(),
     resolve({
       preferBuiltins: true
     }),

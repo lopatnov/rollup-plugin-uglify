@@ -4,10 +4,6 @@
 	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.uglify = factory(global.terser, global.path));
 })(this, (function (terser, path) { 'use strict';
 
-	function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-	var path__default = /*#__PURE__*/_interopDefaultLegacy(path);
-
 	function createCommonjsModule(fn, module) {
 		return module = { exports: {} }, fn(module, module.exports), module.exports;
 	}
@@ -164,7 +160,7 @@
 	  CHAR_VERTICAL_LINE: 124, /* | */
 	  CHAR_ZERO_WIDTH_NOBREAK_SPACE: 65279, /* \uFEFF */
 
-	  SEP: path__default["default"].sep,
+	  SEP: path.sep,
 
 	  /**
 	   * Create EXTGLOB_CHARS
@@ -279,7 +275,7 @@
 	  if (options && typeof options.windows === 'boolean') {
 	    return options.windows;
 	  }
-	  return win32 === true || path__default["default"].sep === '\\';
+	  return win32 === true || path.sep === '\\';
 	};
 
 	exports.escapeLast = (input, char, lastIdx) => {
@@ -1952,7 +1948,7 @@
 
 	picomatch$1.matchBase = (input, glob, options, posix = utils.isWindows(options)) => {
 	  const regex = glob instanceof RegExp ? glob : picomatch$1.makeRe(glob, options);
-	  return regex.test(path__default["default"].basename(input));
+	  return regex.test(path.basename(input));
 	};
 
 	/**
