@@ -1,4 +1,4 @@
-# @lopatnov/rollup-plugin-uglify [![Twitter][twitterbage]][tweet] [![LinkedIn][linkedinbage]][linkedin]
+# @lopatnov/rollup-plugin-uglify [![LinkedIn][linkedinbage]][linkedin]
 
 [![npm](https://img.shields.io/npm/dt/@lopatnov/rollup-plugin-uglify)](https://www.npmjs.com/package/@lopatnov/rollup-plugin-uglify)
 [![NPM version](https://badge.fury.io/js/%40lopatnov%2Frollup-plugin-uglify.svg)](https://www.npmjs.com/package/@lopatnov/rollup-plugin-uglify)
@@ -7,7 +7,6 @@
 [![GitHub forks](https://img.shields.io/github/forks/lopatnov/rollup-plugin-uglify)](https://github.com/lopatnov/rollup-plugin-uglify/network)
 [![GitHub stars](https://img.shields.io/github/stars/lopatnov/rollup-plugin-uglify)](https://github.com/lopatnov/rollup-plugin-uglify/stargazers)
 [![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/npm/@lopatnov/rollup-plugin-uglify)](https://www.npmjs.com/package/@lopatnov/rollup-plugin-uglify?activeTab=dependencies)
-![GitHub top language](https://img.shields.io/github/languages/top/lopatnov/rollup-plugin-uglify)
 
 A rollup plugin to minify javascript
 
@@ -91,15 +90,9 @@ Versions migration: 2.1.2 -> 2.1.4
 
 [rollup-pluginutils](https://github.com/rollup/rollup-pluginutils) has moved and is now available at [@rollup/pluginutils](https://www.npmjs.com/package/@rollup/pluginutils). The best way is to update dependency to `@rollup/pluginutils` as in [documentation](https://rollupjs.org/guide/en/#transformers) or use version `2.1.2` that don't have conflict with `rollup-pluginutils`.
 
-## Donate
-
-[![Charity Health][charity_health]][dobro]
-
-Open source software is just a hobby. I am making it just for fun. A small amount of help will be more significant for non-military charitable foundations. I propose to pay attention to the various local funds or to the volunteers in my country. I hope this will make someone's life better.
-
 ## Rights and Agreements [![LinkedIn][linkedinbage]][linkedin]
 
-Contact me in LinkedIn, I will consider profitable business offers. I am Computer Software Engineer, individual entrepreneur. I develop software of various complexity for the web, desktop, mobile and embedded devices. I have expertise in web development using .NET, Angular and React frameworks, Microsoft and Google technologies, working with the North American and European markets through reseller companies by B2B business model. I was a part of development teams and worked independently with enterprise projects, digital technologies, fintech projects, real estate, barcode software and petroleum industry. I would like to note that I have not bad analytical skills. I'm improving my skills continuously and I have recommendations.
+Contact me in LinkedIn, I will consider profitable business offers. I am Computer Software Engineer. I develop software of various complexity for the web. I would be glad to receive job offers. 
 
 License [Apache-2.0][license]
 
@@ -107,8 +100,6 @@ Copyright 2019-2023 Oleksandr Lopatnov
 
 [minify-options]: https://terser.org/docs/api-reference#minify-options-structure
 [license]: https://github.com/lopatnov/rollup-plugin-uglify/blob/master/LICENSE
-[twitterbage]: https://img.shields.io/twitter/url?url=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2F%40lopatnov%2Frollup-plugin-uglify
-[tweet]: https://twitter.com/intent/tweet?text=I%20want%20to%20share%20TypeScript%20library:&url=https://www.npmjs.com/package/@lopatnov/rollup-plugin-uglify
 [linkedinbage]: https://img.shields.io/badge/LinkedIn-lopatnov-informational?style=social&logo=linkedin
 [linkedin]: https://www.linkedin.com/in/lopatnov/
 [dobro]: https://dobro.ua/en/projects/category/zdorovia?page=1&category=zdorovia&tag=28
