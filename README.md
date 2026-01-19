@@ -90,13 +90,19 @@ Versions migration: 2.1.2 -> 2.1.4
 
 [rollup-pluginutils](https://github.com/rollup/rollup-pluginutils) has moved and is now available at [@rollup/pluginutils](https://www.npmjs.com/package/@rollup/pluginutils). The best way is to update dependency to `@rollup/pluginutils` as in [documentation](https://rollupjs.org/guide/en/#transformers) or use version `2.1.2` that don't have conflict with `rollup-pluginutils`.
 
-## Rights and Agreements [![LinkedIn][linkedinbage]][linkedin]
+## Rights and Agreements
 
-Contact me in LinkedIn, I will consider profitable business offers. I am Computer Software Engineer. I develop software of various complexity for the web. I would be glad to receive job offers. 
+In accordance with the `Apache License, version 2.0`, please place the `Notice.md` file in the root directory of your project with text like:
+
+```txt
+This project uses the @lopatnov/rollup-plugin-uglify package. We are very grateful to Oleksandr Lopatnov for creating it. LinkedIn contact: https://www.linkedin.com/in/lopatnov/
+```
+
+I hope this project will help me find better working conditions. Feel free to contact me on [![LinkedIn][linkedinbage]][linkedin] regarding business matters.
 
 License [Apache-2.0][license]
 
-Copyright 2019-2023 Oleksandr Lopatnov
+Copyright 2019-2026 Oleksandr Lopatnov
 
 [minify-options]: https://terser.org/docs/api-reference#minify-options-structure
 [license]: https://github.com/lopatnov/rollup-plugin-uglify/blob/master/LICENSE
