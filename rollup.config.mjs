@@ -1,36 +1,56 @@
-import json from "rollup-plugin-json";
-import typescript from "rollup-plugin-typescript2";
-import commonjs from "rollup-plugin-commonjs";
-import resolve from "rollup-plugin-node-resolve";
+import json from "@rollup/plugin-json";
+import typescript from "@rollup/plugin-typescript";
+import commonjs from "@rollup/plugin-commonjs";
+import resolve from "@rollup/plugin-node-resolve";
 
-import pkg from "./package.json" assert { type: "json" };
+import pkg from "./package.json" with { type: "json" };
+
+const external = [
+  ...Object.keys(pkg.dependencies || {}),
+  ...Object.keys(pkg.peerDependencies || {})
+];
+
+const plugins = [
+  json(),
+  typescript({
+    tsconfig: "./tsconfig.json",
+    declaration: true,
+    declarationMap: true
+  }),
+  resolve({
+    preferBuiltins: true
+  }),
+  commonjs()
+];
 
 export default {
   input: pkg.source,
+
   output: [
     {
       file: pkg.main,
-      format: "umd",
-      name: pkg.umdName,
-      sourcemap: true
+      format: "cjs",
+      sourcemap: true,
+      exports: "default"
     },
     {
       file: pkg.module,
-      format: "cjs",
+      format: "es",
       sourcemap: true
+    },
+    {
+      file: pkg.browser,
+      format: "umd",
+      name: pkg.umdName,
+      sourcemap: true,
+      globals: {
+        "@rollup/pluginutils": "pluginutils",
+        terser: "terser",
+        path: "path"
+      }
     }
   ],
-  external: [
-    ...Object.keys(pkg.devDependencies || {}),
-    ...Object.keys(pkg.peerDependencies || {})
-  ],
 
-  plugins: [
-    json(),
-    typescript(),
-    resolve({
-      preferBuiltins: true
-    }),
-    commonjs(),
-  ]
+  external,
+  plugins
 };

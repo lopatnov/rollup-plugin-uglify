@@ -6,3 +6,4 @@ export interface IUglifyOptions extends MinifyOptions {
 }
 declare function uglify(options?: IUglifyOptions): Plugin;
 export default uglify;
+//# sourceMappingURL=plugin.d.ts.map
