@@ -1,8 +1,11 @@
 {
   "name": "@lopatnov/rollup-plugin-uglify",
   "version": "3.0.0",
-  "description": "Rollup plugin. Javascript code minifier",
-  "author": "lopatnov",
+  "description": "A Rollup plugin for minifying JavaScript bundles using Terser",
+  "author": {
+    "name": "Oleksandr Lopatnov",
+    "url": "https://github.com/lopatnov"
+  },
   "license": "Apache-2.0",
   "homepage": "https://lopatnov.github.io/rollup-plugin-uglify/",
   "umdName": "uglify",
@@ -21,10 +24,15 @@
   },
   "keywords": [
     "rollup",
-    "plugin",
     "rollup-plugin",
-    "minification",
+    "uglify",
+    "minify",
+    "minifier",
+    "terser",
+    "javascript",
     "compression",
+    "optimization",
+    "bundle",
     "typescript"
   ],
   "repository": {
@@ -66,5 +74,8 @@
   "peerDependencies": {
     "rollup": ">=4.0.0",
     "terser": ">=4.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
