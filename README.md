@@ -1,106 +1,167 @@
-# @lopatnov/rollup-plugin-uglify [![LinkedIn][linkedinbage]][linkedin]
+# @lopatnov/rollup-plugin-uglify
 
 [![npm](https://img.shields.io/npm/dt/@lopatnov/rollup-plugin-uglify)](https://www.npmjs.com/package/@lopatnov/rollup-plugin-uglify)
 [![NPM version](https://badge.fury.io/js/%40lopatnov%2Frollup-plugin-uglify.svg)](https://www.npmjs.com/package/@lopatnov/rollup-plugin-uglify)
 [![License](https://img.shields.io/github/license/lopatnov/rollup-plugin-uglify)](https://github.com/lopatnov/rollup-plugin-uglify/blob/master/LICENSE)
-[![GitHub issues](https://img.shields.io/github/issues/lopatnov/rollup-plugin-uglify)](https://github.com/lopatnov/rollup-plugin-uglify/issues)
-[![GitHub forks](https://img.shields.io/github/forks/lopatnov/rollup-plugin-uglify)](https://github.com/lopatnov/rollup-plugin-uglify/network)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/lopatnov/rollup-plugin-uglify/node-package-ci.yml)](https://github.com/lopatnov/rollup-plugin-uglify/actions)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-blue)](https://www.typescriptlang.org/)
 [![GitHub stars](https://img.shields.io/github/stars/lopatnov/rollup-plugin-uglify)](https://github.com/lopatnov/rollup-plugin-uglify/stargazers)
-[![Libraries.io dependency status for latest release](https://img.shields.io/librariesio/release/npm/@lopatnov/rollup-plugin-uglify)](https://www.npmjs.com/package/@lopatnov/rollup-plugin-uglify?activeTab=dependencies)
 
-A rollup plugin to minify javascript
+A [Rollup](https://rollupjs.org/) plugin for minifying JavaScript bundles using [Terser](https://terser.org/).
 
-## Requirements
+## Features
 
-Install rollup and terser first.
+- Full TypeScript support with type definitions
+- Multiple output formats: CommonJS, ES Modules, UMD
+- Source map generation enabled by default
+- Flexible file filtering with `include`/`exclude` patterns
+- All Terser minification options supported
+- Zero configuration required for basic usage
 
-```shell
-npm install rollup --save-dev
-npm install terser --save-dev
+## Installation
+
+### Prerequisites
+
+This plugin requires Rollup and Terser as peer dependencies:
+
+```bash
+npm install rollup terser --save-dev
 ```
 
-## Install
+### Install the plugin
 
-[![https://nodei.co/npm/@lopatnov/rollup-plugin-uglify.png?downloads=true&downloadRank=true&stars=true](https://nodei.co/npm/@lopatnov/rollup-plugin-uglify.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/@lopatnov/rollup-plugin-uglify)
-
-```shell
+```bash
 npm install @lopatnov/rollup-plugin-uglify --save-dev
 ```
 
-### Import package to the project
+## Usage
 
-ESM import
-
-```typescript
-import uglify from "@lopatnov/rollup-plugin-uglify";
-```
-
-CJS require
+### Basic Usage
 
 ```javascript
-var uglify = require("@lopatnov/rollup-plugin-uglify");
-```
+// rollup.config.js
+import uglify from "@lopatnov/rollup-plugin-uglify";
 
-### How to use plugin
-
-File rollup.config.ts
-
-```typescript
 export default {
-  //...
-  plugins: [
-    //...
-    uglify(),
-  ],
+  input: "src/index.js",
+  output: {
+    file: "dist/bundle.js",
+    format: "cjs",
+  },
+  plugins: [uglify()],
 };
 ```
 
-#### with options
+### With Options
 
-```typescript
+```javascript
+import uglify from "@lopatnov/rollup-plugin-uglify";
+
 export default {
-  //...
+  input: "src/index.js",
+  output: {
+    file: "dist/bundle.js",
+    format: "es",
+    sourcemap: true,
+  },
   plugins: [
-    //...
     uglify({
-      //options: IUglifyOptions
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
+      mangle: true,
+      ecma: 2020,
     }),
   ],
 };
 ```
 
-#### Options
+### CommonJS Import
 
-`uglify` function has optional argument `options: IUglifyOptions`.
+```javascript
+const uglify = require("@lopatnov/rollup-plugin-uglify");
+```
 
-`IUglifyOptions` is an interface, that extends [`MinifyOptions`][minify-options] of `terser` package.
+## Options
 
-`IUglifyOptions` contains:
+The `uglify()` function accepts an optional configuration object that extends Terser's [MinifyOptions](https://terser.org/docs/api-reference#minify-options-structure).
 
-- `include?: string | RegExp`
-- `exclude?: string | RegExp`
+### Plugin-specific Options
 
-A valid minimatch pattern, or array of patterns to include / exclude files. If `include` is omitted or has zero length, filter will return true by default. Otherwise, an ID must match one or more of the minimatch patterns, and must not match any of the `exclude` patterns.
+| Option    | Type                | Description                                    |
+| --------- | ------------------- | ---------------------------------------------- |
+| `include` | `string \| RegExp`  | Pattern to match files that should be minified |
+| `exclude` | `string \| RegExp`  | Pattern to match files that should be skipped  |
+
+### Common Terser Options
+
+| Option      | Type      | Default | Description                           |
+| ----------- | --------- | ------- | ------------------------------------- |
+| `sourceMap` | `boolean` | `true`  | Generate source maps                  |
+| `compress`  | `object`  | -       | Compression options                   |
+| `mangle`    | `boolean` | -       | Mangle variable names                 |
+| `ecma`      | `number`  | -       | ECMAScript version (2015, 2020, etc.) |
+
+For a complete list of options, see the [Terser documentation](https://terser.org/docs/api-reference#minify-options-structure).
+
+### Examples
+
+#### Minify only specific files
+
+```javascript
+uglify({
+  include: /\.min\.js$/,
+});
+```
+
+#### Exclude test files
+
+```javascript
+uglify({
+  exclude: /\.test\.js$/,
+});
+```
+
+#### Production build with aggressive compression
+
+```javascript
+uglify({
+  compress: {
+    drop_console: true,
+    drop_debugger: true,
+    pure_funcs: ["console.log"],
+  },
+  mangle: {
+    properties: false,
+  },
+  ecma: 2020,
+});
+```
 
 ## Troubleshooting
 
-### Issue 13: cannot find module @rollup/pluginutils
+### Cannot find module @rollup/pluginutils
 
-Versions migration: 2.1.2 -> 2.1.4
+If you're upgrading from version 2.1.2 to 2.1.4+, you may encounter this error. The dependency has been updated from `rollup-pluginutils` to `@rollup/pluginutils`. Run `npm install` to resolve.
 
-[rollup-pluginutils](https://github.com/rollup/rollup-pluginutils) has moved and is now available at [@rollup/pluginutils](https://www.npmjs.com/package/@rollup/pluginutils). The best way is to update dependency to `@rollup/pluginutils` as in [documentation](https://rollupjs.org/guide/en/#transformers) or use version `2.1.2` that don't have conflict with `rollup-pluginutils`.
+## Contributing
 
-## Rights and Agreements [![LinkedIn][linkedinbage]][linkedin]
+Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-Contact me in LinkedIn, I will consider profitable business offers. I am Computer Software Engineer. I develop software of various complexity for the web. I would be glad to receive job offers. 
+## License
 
-License [Apache-2.0][license]
+[Apache-2.0](LICENSE)
 
-Copyright 2019-2023 Oleksandr Lopatnov
+Copyright 2019-2026 Oleksandr Lopatnov
 
-[minify-options]: https://terser.org/docs/api-reference#minify-options-structure
-[license]: https://github.com/lopatnov/rollup-plugin-uglify/blob/master/LICENSE
-[linkedinbage]: https://img.shields.io/badge/LinkedIn-lopatnov-informational?style=social&logo=linkedin
-[linkedin]: https://www.linkedin.com/in/lopatnov/
-[dobro]: https://dobro.ua/en/projects/category/zdorovia?page=1&category=zdorovia&tag=28
-[charity_health]: https://img.shields.io/badge/Charity%20Health-Dobro-red?style=flat-square&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABBVBMVEUAAAAAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWQAuWT///+PPo6DAAAAVXRSTlMAAA4wOR0CAUe/7vPbfA9K5PyKBAPF9PL47f7qN2QiW0V+mpvejJWBnaBanDWLpUva3aGemaa7o1d7rY2nXt/G/eszLmoUZ4mAT+ePBU3D3IIREDEe6n6MQgAAAAFiS0dEVgoN6YkAAAAHdElNRQfkCAcPCB1MJSGgAAAAlElEQVQY02NgIB0wMjIxs7CyMcIF2Dk4ubh5ePngIvwCoUAgKCTMyMjOyCbCziAqJi4hKSUlLSMrJ6+gqKTMoKKqqqauoaGppa2jq6epb8BgqGFkbGJqZm6hZmllbWNrx2AfKuXgIBXq6OSs6uLq5u7B4OkFMtTB24cRCEC2sPn6cXH7BwQyIhwWFMwSIsJIkm9QAQBayRNRV4rFmQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMC0wOC0wN1QxNTowODoyOSswMjowMBaHG7YAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjAtMDgtMDdUMTU6MDg6MjkrMDI6MDBn2qMKAAAAV3pUWHRSYXcgcHJvZmlsZSB0eXBlIGlwdGMAAHic4/IMCHFWKCjKT8vMSeVSAAMjCy5jCxMjE0uTFAMTIESANMNkAyOzVCDL2NTIxMzEHMQHy4BIoEouAOoXEXTyQjWVAAAAAElFTkSuQmCC
+---
+
+### Author
+
+**Oleksandr Lopatnov** — Full-stack developer
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat&logo=linkedin)](https://www.linkedin.com/in/lopatnov/)
+[![GitHub](https://img.shields.io/badge/GitHub-Follow-black?style=flat&logo=github)](https://github.com/lopatnov)
+
+If you find this project useful, please consider giving it a star on GitHub!

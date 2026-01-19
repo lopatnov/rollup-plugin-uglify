@@ -1,5 +1,7 @@
-import { minify } from 'terser';
-import { createFilter } from '@rollup/pluginutils';
+'use strict';
+
+var terser = require('terser');
+var pluginutils = require('@rollup/pluginutils');
 
 /******************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -63,7 +65,7 @@ typeof SuppressedError === "function" ? SuppressedError : function (error, suppr
 
 function uglify(options) {
     if (options === void 0) { options = {}; }
-    var filter = createFilter(options.include, options.exclude);
+    var filter = pluginutils.createFilter(options.include, options.exclude);
     delete options.include;
     delete options.exclude;
     return {
@@ -80,7 +82,7 @@ function uglify(options) {
                             if (typeof options.sourceMap === "undefined") {
                                 options.sourceMap = true;
                             }
-                            return [4 /*yield*/, minify(code, options)];
+                            return [4 /*yield*/, terser.minify(code, options)];
                         case 1:
                             result = _a.sent();
                             if (!result || !result.code) {
@@ -97,5 +99,5 @@ function uglify(options) {
     };
 }
 
-export { uglify as default };
-//# sourceMappingURL=plugin.es.js.map
+module.exports = uglify;
+//# sourceMappingURL=plugin.cjs.js.map
