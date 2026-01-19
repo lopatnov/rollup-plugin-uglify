@@ -67,6 +67,8 @@
     function uglify(options) {
         if (options === void 0) { options = {}; }
         var filter = pluginutils.createFilter(options.include, options.exclude);
+        delete options.include;
+        delete options.exclude;
         return {
             name: "uglify",
             transform: function (code, id) {

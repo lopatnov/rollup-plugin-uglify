@@ -9,6 +9,9 @@ export interface IUglifyOptions extends MinifyOptions {
 
 function uglify(options: IUglifyOptions = {}): Plugin {
   const filter = createFilter(options.include, options.exclude);
+  delete options.include;
+  delete options.exclude;
+  
   return {
     name: "uglify",
     async transform(this: TransformPluginContext, code: string, id: string) {
