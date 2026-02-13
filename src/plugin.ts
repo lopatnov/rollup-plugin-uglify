@@ -37,4 +37,5 @@ function uglify(options: IUglifyOptions = {}): Plugin {
   };
 }
 
+export { uglify };
 export default uglify;

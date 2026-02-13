@@ -5,5 +5,6 @@ export interface IUglifyOptions extends MinifyOptions {
     exclude?: string | RegExp;
 }
 declare function uglify(options?: IUglifyOptions): Plugin;
+export { uglify };
 export default uglify;
 //# sourceMappingURL=plugin.d.ts.map

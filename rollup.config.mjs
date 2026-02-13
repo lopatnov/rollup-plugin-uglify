@@ -31,7 +31,8 @@ export default {
       file: pkg.main,
       format: "cjs",
       sourcemap: true,
-      exports: "default"
+      exports: "named",
+      outro: "module.exports = exports.default;\nObject.assign(module.exports, exports);"
     },
     {
       file: pkg.module,
@@ -43,6 +44,7 @@ export default {
       format: "umd",
       name: pkg.umdName,
       sourcemap: true,
+      exports: "named",
       globals: {
         "@rollup/pluginutils": "pluginutils",
         terser: "terser",

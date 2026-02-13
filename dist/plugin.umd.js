@@ -1,8 +1,8 @@
 (function (global, factory) {
-    typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('terser'), require('@rollup/pluginutils')) :
-    typeof define === 'function' && define.amd ? define(['terser', '@rollup/pluginutils'], factory) :
-    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.uglify = factory(global.terser, global.pluginutils));
-})(this, (function (terser, pluginutils) { 'use strict';
+    typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('terser'), require('@rollup/pluginutils')) :
+    typeof define === 'function' && define.amd ? define(['exports', 'terser', '@rollup/pluginutils'], factory) :
+    (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.uglify = {}, global.terser, global.pluginutils));
+})(this, (function (exports, terser, pluginutils) { 'use strict';
 
     /******************************************************************************
     Copyright (c) Microsoft Corporation.
@@ -100,7 +100,10 @@
         };
     }
 
-    return uglify;
+    exports.default = uglify;
+    exports.uglify = uglify;
+
+    Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
 //# sourceMappingURL=plugin.umd.js.map

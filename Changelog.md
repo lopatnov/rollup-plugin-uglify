@@ -2,6 +2,7 @@
 
 | Version | Changes |
 |--:|:--|
+| 3.1.0 | Added CJS named export for dual ESM + CJS compatibility. |
 | 3.0.0 | Updated project. Added es modules. Removed old dependencies. |
 | 2.1.0 | Added behavior for async terser result |
 | 2.1.1 | Updated packages, added "moduleResolution" configuration to tsconfig  |

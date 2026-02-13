@@ -1,5 +1,7 @@
 'use strict';
 
+Object.defineProperty(exports, '__esModule', { value: true });
+
 var terser = require('terser');
 var pluginutils = require('@rollup/pluginutils');
 
@@ -99,5 +101,9 @@ function uglify(options) {
     };
 }
 
-module.exports = uglify;
+exports.default = uglify;
+exports.uglify = uglify;
+
+module.exports = exports.default;
+Object.assign(module.exports, exports);
 //# sourceMappingURL=plugin.cjs.js.map
