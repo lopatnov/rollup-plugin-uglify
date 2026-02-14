@@ -6,7 +6,7 @@
     "rootDir": "./src",
     "module": "ES2015",
     "outDir": "./dist",
-    "target": "es5",
+    "target": "ES2018",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "strict": true,

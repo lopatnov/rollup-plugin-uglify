@@ -1,12 +1,8 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-var terser = require('terser');
-var pluginutils = require('@rollup/pluginutils');
+import { minify } from 'terser';
+import { createFilter } from '@rollup/pluginutils';
 
 function uglify(options = {}) {
-    const filter = pluginutils.createFilter(options.include, options.exclude);
+    const filter = createFilter(options.include, options.exclude);
     delete options.include;
     delete options.exclude;
     return {
@@ -18,7 +14,7 @@ function uglify(options = {}) {
             if (typeof options.sourceMap === "undefined") {
                 options.sourceMap = true;
             }
-            const result = await terser.minify(code, options);
+            const result = await minify(code, options);
             if (!result || !result.code) {
                 throw new Error("Minification failed: no result");
             }
@@ -30,9 +26,5 @@ function uglify(options = {}) {
     };
 }
 
-exports.default = uglify;
-exports.uglify = uglify;
-
-module.exports = exports.default;
-Object.assign(module.exports, exports);
-//# sourceMappingURL=plugin.cjs.js.map
+export { uglify as default, uglify };
+//# sourceMappingURL=plugin.es.mjs.map
