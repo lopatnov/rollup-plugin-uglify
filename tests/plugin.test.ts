@@ -22,7 +22,7 @@ describe("rollup-plugin-uglify", () => {
     expect(testResult).toBe(1100);
   });
 
-  it("generates source maps by default", async () => {
+  it("generates source maps when output sourcemap is enabled", async () => {
     const bundle = await rollup({
       input: "tests/sample.js",
       plugins: [uglify()],
@@ -51,37 +51,36 @@ describe("rollup-plugin-uglify", () => {
       sourcemap: false,
     });
 
-    // When sourceMap is false, the plugin shouldn't generate a map
     expect(result.output[0].code).toBeTruthy();
   });
 
-  it("excludes files matching exclude pattern", async () => {
+  it("excludes chunks matching exclude pattern", async () => {
     const bundle = await rollup({
       input: "tests/sample.js",
       plugins: [
         uglify({
-          exclude: /sample\.js$/,
+          exclude: /\.js$/,
         }),
       ],
     });
 
     const result = await bundle.generate({ format: "cjs" });
-    // Code should not be minified (contains original formatting)
+    // Chunk fileName ends with .js, so it should be excluded from minification
     expect(result.output[0].code).toContain("function");
   });
 
-  it("includes only files matching include pattern", async () => {
+  it("includes only chunks matching include pattern", async () => {
     const bundle = await rollup({
       input: "tests/sample.js",
       plugins: [
         uglify({
-          include: /\.ts$/, // Only TypeScript files (none in this test)
+          include: /\.ts$/, // Only .ts chunks (none in this test)
         }),
       ],
     });
 
     const result = await bundle.generate({ format: "cjs" });
-    // JS files should not be minified
+    // JS chunks should not be minified
     expect(result.output[0].code).toContain("function");
   });
 
@@ -98,7 +97,6 @@ describe("rollup-plugin-uglify", () => {
     });
 
     const result = await bundle.generate({ format: "cjs" });
-    // Code should be minified (shorter)
     expect(result.output[0].code.length).toBeLessThan(200);
   });
 
@@ -129,7 +127,6 @@ describe("rollup-plugin-uglify", () => {
     });
 
     const result = await bundle.generate({ format: "cjs" });
-    // Variable names should be shortened
     expect(result.output[0].code).toBeTruthy();
     expect(result.output[0].code.length).toBeLessThan(200);
   });
@@ -140,15 +137,12 @@ describe("rollup-plugin-uglify", () => {
       plugins: [uglify({ compress: true })],
     });
 
-    // Test CJS format
     const cjsResult = await bundle.generate({ format: "cjs" });
     expect(cjsResult.output[0].code).toBeTruthy();
 
-    // Test ES format
     const esResult = await bundle.generate({ format: "es" });
     expect(esResult.output[0].code).toBeTruthy();
 
-    // Test IIFE format
     const iifeResult = await bundle.generate({ format: "iife", name: "Test" });
     expect(iifeResult.output[0].code).toBeTruthy();
   });
@@ -194,11 +188,31 @@ describe("rollup-plugin-uglify", () => {
 
     const result = await bundle.generate({ format: "cjs" });
 
-    // Execute the minified code and verify it still works
     const testResult = Function(
       `var x = 500; ${result.output[0].code}; return SimpleTest()`
     )();
 
-    expect(testResult).toBe(600); // 100 + 500
+    expect(testResult).toBe(600);
+  });
+
+  it("supports legacy transform hook via hook option", async () => {
+    const bundle = await rollup({
+      input: "tests/sample.js",
+      plugins: [
+        uglify({
+          hook: "transform",
+          compress: true,
+          mangle: true,
+        }),
+      ],
+    });
+
+    const result = await bundle.generate({ format: "cjs" });
+    const testResult = Function(
+      `var x = 1000; ${result.output[0].code}; return SimpleTest()`
+    )();
+
+    expect(testResult).toBe(1100);
+    expect(result.output[0].code.length).toBeLessThan(200);
   });
 });

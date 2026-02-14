@@ -89,16 +89,17 @@ The `uglify()` function accepts an optional configuration object that extends Te
 
 ### Plugin-specific Options
 
-| Option    | Type                | Description                                    |
-| --------- | ------------------- | ---------------------------------------------- |
-| `include` | `string \| RegExp`  | Pattern to match files that should be minified |
-| `exclude` | `string \| RegExp`  | Pattern to match files that should be skipped  |
+| Option    | Type                              | Default         | Description                                    |
+| --------- | --------------------------------- | --------------- | ---------------------------------------------- |
+| `include` | `string \| RegExp`                | -               | Pattern to match chunks that should be minified |
+| `exclude` | `string \| RegExp`                | -               | Pattern to match chunks that should be skipped  |
+| `hook`    | `"renderChunk" \| "transform"`    | `"renderChunk"` | Rollup hook to use for minification            |
 
 ### Common Terser Options
 
 | Option      | Type      | Default | Description                           |
 | ----------- | --------- | ------- | ------------------------------------- |
-| `sourceMap` | `boolean` | `true`  | Generate source maps                  |
+| `sourceMap` | `boolean` | auto    | Generate source maps (follows output `sourcemap` option) |
 | `compress`  | `object`  | -       | Compression options                   |
 | `mangle`    | `boolean` | -       | Mangle variable names                 |
 | `ecma`      | `number`  | -       | ECMAScript version (2015, 2020, etc.) |
@@ -120,6 +121,15 @@ uglify({
 ```javascript
 uglify({
   exclude: /\.test\.js$/,
+});
+```
+
+#### Use legacy transform hook (per-module minification)
+
+```javascript
+uglify({
+  hook: "transform",
+  compress: true,
 });
 ```
 
