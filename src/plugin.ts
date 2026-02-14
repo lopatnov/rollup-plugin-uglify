@@ -1,40 +1,59 @@
-import { Plugin, TransformPluginContext } from "rollup";
+import { Plugin, NormalizedOutputOptions, RenderedChunk, TransformPluginContext } from "rollup";
 import { minify, MinifyOptions } from "terser";
 import { createFilter } from "@rollup/pluginutils";
 
 export interface IUglifyOptions extends MinifyOptions {
   include?: string | RegExp;
   exclude?: string | RegExp;
+  /** @default "renderChunk" */
+  hook?: "renderChunk" | "transform";
 }
 
 function uglify(options: IUglifyOptions = {}): Plugin {
   const filter = createFilter(options.include, options.exclude);
+  const hook = options.hook || "renderChunk";
   delete options.include;
   delete options.exclude;
-  
-  return {
+  delete options.hook;
+
+  async function minifyCode(code: string, sourceMap: boolean) {
+    if (typeof options.sourceMap === "undefined") {
+      options.sourceMap = sourceMap;
+    }
+
+    const result = await minify(code, options);
+
+    if (!result || !result.code) {
+      throw new Error("Minification failed: no result");
+    }
+
+    return {
+      code: result.code,
+      map: result.map as any,
+    };
+  }
+
+  const plugin: Plugin = {
     name: "uglify",
-    async transform(this: TransformPluginContext, code: string, id: string) {
+  };
+
+  if (hook === "transform") {
+    plugin.transform = async function (this: TransformPluginContext, code: string, id: string) {
       if (!filter(id)) {
         return null;
       }
-
-      if (typeof options.sourceMap === "undefined") {
-        options.sourceMap = true;
+      return minifyCode(code, true);
+    };
+  } else {
+    plugin.renderChunk = async function (code: string, chunk: RenderedChunk, outputOptions: NormalizedOutputOptions) {
+      if (!filter(chunk.fileName)) {
+        return null;
       }
+      return minifyCode(code, !!outputOptions.sourcemap);
+    };
+  }
 
-      const result = await minify(code, options);
-
-      if (!result || !result.code) {
-        throw new Error("Minification failed: no result");
-      }
-
-      return {
-        code: result.code,
-        map: result.map as any,
-      };
-    },
-  };
+  return plugin;
 }
 
 export { uglify };

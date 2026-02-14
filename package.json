@@ -1,6 +1,6 @@
 {
   "name": "@lopatnov/rollup-plugin-uglify",
-  "version": "3.2.0",
+  "version": "4.0.0",
   "description": "A Rollup plugin for minifying JavaScript bundles using Terser",
   "author": {
     "name": "Oleksandr Lopatnov",
