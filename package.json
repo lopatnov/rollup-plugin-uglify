@@ -1,6 +1,6 @@
 {
   "name": "@lopatnov/rollup-plugin-uglify",
-  "version": "3.1.0",
+  "version": "3.2.0",
   "description": "A Rollup plugin for minifying JavaScript bundles using Terser",
   "author": {
     "name": "Oleksandr Lopatnov",
@@ -11,12 +11,12 @@
   "umdName": "uglify",
   "source": "src/plugin.ts",
   "main": "dist/plugin.cjs.js",
-  "module": "dist/plugin.es.js",
+  "module": "dist/plugin.es.mjs",
   "browser": "dist/plugin.umd.js",
   "types": "dist/plugin.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/plugin.es.js",
+      "import": "./dist/plugin.es.mjs",
       "require": "./dist/plugin.cjs.js",
       "browser": "./dist/plugin.umd.js",
       "types": "./dist/plugin.d.ts"
@@ -45,7 +45,7 @@
   "scripts": {
     "build": "rollup -c",
     "watch": "rollup -cw",
-    "test": "jest",
+    "test": "jest --coverage",
     "prepare": "npm i --no-save --no-package-lock terser@latest",
     "configure-npm": "node ./set-registry.js -s https://registry.npmjs.org",
     "configure-gpr": "node ./set-registry.js -s https://npm.pkg.github.com",
