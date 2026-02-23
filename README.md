@@ -98,11 +98,11 @@ The `uglify()` function accepts an optional configuration object that extends Te
 
 ### Plugin-specific Options
 
-| Option    | Type                           | Default         | Description                                     |
-| --------- | ------------------------------ | --------------- | ----------------------------------------------- |
-| `include` | `string \| RegExp`             | -               | Pattern to match chunks that should be minified  |
-| `exclude` | `string \| RegExp`             | -               | Pattern to match chunks that should be skipped   |
-| `hook`    | `"renderChunk" \| "transform"` | `"renderChunk"` | Rollup hook to use for minification              |
+| Option    | Type                           | Default       | Description                                                                        |
+| --------- | ------------------------------ | ------------- | ---------------------------------------------------------------------------------- |
+| `include` | `string \| RegExp`             | -             | Pattern to match chunks that should be minified                                    |
+| `exclude` | `string \| RegExp`             | -             | Pattern to match chunks that should be skipped                                     |
+| `hook`    | `"renderChunk" \| "transform"` | `"transform"` | Rollup hook to use for minification. It's recommended to use `"renderChunk"` value |
 
 ### Common Terser Options
 
