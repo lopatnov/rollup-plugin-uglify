@@ -47,8 +47,6 @@
     "watch": "rollup -cw",
     "test": "jest --coverage",
     "prepare": "npm i --no-save --no-package-lock terser@latest",
-    "configure-npm": "node ./set-registry.js -s https://registry.npmjs.org",
-    "configure-gpr": "node ./set-registry.js -s https://npm.pkg.github.com",
     "update": "npx npm-check-updates -u && npm install"
   },
   "files": [

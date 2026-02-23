@@ -31,7 +31,6 @@ jobs:
           node-version: "24.x"
           registry-url: "https://npm.pkg.github.com"
           scope: "@lopatnov"
-      - run: npm run configure-gpr
       - run: npm publish --access=public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.github_token }}
