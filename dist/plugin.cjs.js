@@ -7,15 +7,16 @@ var pluginutils = require('@rollup/pluginutils');
 
 function uglify(options = {}) {
     const filter = pluginutils.createFilter(options.include, options.exclude);
-    const hook = options.hook || "renderChunk";
+    const hook = options.hook || "transform";
     delete options.include;
     delete options.exclude;
     delete options.hook;
-    async function minifyCode(code, sourceMap) {
-        if (typeof options.sourceMap === "undefined") {
-            options.sourceMap = sourceMap;
-        }
-        const result = await terser.minify(code, options);
+    async function minifyCode(code, defaultSourceMap) {
+        const minifyOptions = {
+            ...options,
+            sourceMap: options.sourceMap !== undefined ? options.sourceMap : defaultSourceMap,
+        };
+        const result = await terser.minify(code, minifyOptions);
         if (!result || !result.code) {
             throw new Error("Minification failed: no result");
         }

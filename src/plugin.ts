@@ -1,4 +1,9 @@
-import { Plugin, NormalizedOutputOptions, RenderedChunk, TransformPluginContext } from "rollup";
+import {
+  Plugin,
+  NormalizedOutputOptions,
+  RenderedChunk,
+  TransformPluginContext,
+} from "rollup";
 import { minify, MinifyOptions } from "terser";
 import { createFilter } from "@rollup/pluginutils";
 
@@ -11,17 +16,19 @@ export interface IUglifyOptions extends MinifyOptions {
 
 function uglify(options: IUglifyOptions = {}): Plugin {
   const filter = createFilter(options.include, options.exclude);
-  const hook = options.hook || "renderChunk";
+  const hook = options.hook || "transform";
   delete options.include;
   delete options.exclude;
   delete options.hook;
 
-  async function minifyCode(code: string, sourceMap: boolean) {
-    if (typeof options.sourceMap === "undefined") {
-      options.sourceMap = sourceMap;
-    }
+  async function minifyCode(code: string, defaultSourceMap: boolean) {
+    const minifyOptions = {
+      ...options,
+      sourceMap:
+        options.sourceMap !== undefined ? options.sourceMap : defaultSourceMap,
+    };
 
-    const result = await minify(code, options);
+    const result = await minify(code, minifyOptions);
 
     if (!result || !result.code) {
       throw new Error("Minification failed: no result");
@@ -38,14 +45,22 @@ function uglify(options: IUglifyOptions = {}): Plugin {
   };
 
   if (hook === "transform") {
-    plugin.transform = async function (this: TransformPluginContext, code: string, id: string) {
+    plugin.transform = async function (
+      this: TransformPluginContext,
+      code: string,
+      id: string,
+    ) {
       if (!filter(id)) {
         return null;
       }
       return minifyCode(code, true);
     };
   } else {
-    plugin.renderChunk = async function (code: string, chunk: RenderedChunk, outputOptions: NormalizedOutputOptions) {
+    plugin.renderChunk = async function (
+      code: string,
+      chunk: RenderedChunk,
+      outputOptions: NormalizedOutputOptions,
+    ) {
       if (!filter(chunk.fileName)) {
         return null;
       }
