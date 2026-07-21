@@ -43,14 +43,16 @@
     "url": "https://github.com/lopatnov/rollup-plugin-uglify/issues"
   },
   "scripts": {
-    "build": "rollup -c && tsc -p tsconfig.json --emitDeclarationOnly",
+    "build": "rollup -c && tsc -p tsconfig.json",
     "watch": "rollup -cw",
+    "watch:types": "tsc -p tsconfig.json --watch",
     "test": "vitest run --coverage",
     "prepare": "npm i --no-save --no-package-lock terser@latest",
     "update": "npx npm-check-updates -u && npm install"
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "dependencies": {
     "@rollup/pluginutils": "^5.4.0"
