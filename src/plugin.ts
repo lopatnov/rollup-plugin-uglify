@@ -16,7 +16,12 @@ export interface IUglifyOptions extends MinifyOptions {
 }
 
 function uglify(options: IUglifyOptions = {}): Plugin {
-  const { include, exclude, hook: hookOption, ...terserOptions } = options;
+  const {
+    include,
+    exclude,
+    hook: hookOption,
+    ...terserOptions
+  } = options || {};
   const filter = createFilter(include, exclude);
   const hook = hookOption || "transform";
 

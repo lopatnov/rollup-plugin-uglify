@@ -2,7 +2,7 @@ import { minify } from 'terser';
 import { createFilter } from '@rollup/pluginutils';
 
 function uglify(options = {}) {
-    const { include, exclude, hook: hookOption, ...terserOptions } = options;
+    const { include, exclude, hook: hookOption, ...terserOptions } = options || {};
     const filter = createFilter(include, exclude);
     const hook = hookOption || "transform";
     async function minifyCode(code, defaultSourceMap) {

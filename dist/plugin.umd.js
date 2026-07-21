@@ -5,7 +5,7 @@
 })(this, (function (exports, terser, pluginutils) { 'use strict';
 
     function uglify(options = {}) {
-        const { include, exclude, hook: hookOption, ...terserOptions } = options;
+        const { include, exclude, hook: hookOption, ...terserOptions } = options || {};
         const filter = pluginutils.createFilter(include, exclude);
         const hook = hookOption || "transform";
         async function minifyCode(code, defaultSourceMap) {
