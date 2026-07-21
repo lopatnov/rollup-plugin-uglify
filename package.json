@@ -16,10 +16,10 @@
   "types": "dist/plugin.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/plugin.es.mjs",
-      "require": "./dist/plugin.cjs.js",
+      "types": "./dist/plugin.d.ts",
       "browser": "./dist/plugin.umd.js",
-      "types": "./dist/plugin.d.ts"
+      "import": "./dist/plugin.es.mjs",
+      "require": "./dist/plugin.cjs.js"
     }
   },
   "keywords": [
