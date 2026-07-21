@@ -1,5 +1,5 @@
 import json from "@rollup/plugin-json";
-import typescript from "@rollup/plugin-typescript";
+import esbuild from "rollup-plugin-esbuild";
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 
@@ -12,10 +12,8 @@ const external = [
 
 const plugins = [
   json(),
-  typescript({
-    tsconfig: "./tsconfig.json",
-    declaration: true,
-    declarationMap: true
+  esbuild({
+    tsconfig: "./tsconfig.json"
   }),
   resolve({
     preferBuiltins: true
