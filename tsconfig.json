@@ -2,6 +2,7 @@
   "compilerOptions": {
     "moduleResolution": "bundler",
     "declaration": true,
+    "declarationMap": true,
     "declarationDir": "./dist",
     "rootDir": "./src",
     "module": "ES2015",

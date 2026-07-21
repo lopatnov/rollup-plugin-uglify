@@ -6,45 +6,47 @@ var terser = require('terser');
 var pluginutils = require('@rollup/pluginutils');
 
 function uglify(options = {}) {
-    const { include, exclude, hook: hookOption, ...terserOptions } = options || {};
-    const filter = pluginutils.createFilter(include, exclude);
-    const hook = hookOption || "transform";
-    async function minifyCode(code, defaultSourceMap) {
-        const minifyOptions = {
-            ...terserOptions,
-            sourceMap: terserOptions.sourceMap !== undefined
-                ? terserOptions.sourceMap
-                : defaultSourceMap,
-        };
-        const result = await terser.minify(code, minifyOptions);
-        if (!result || !result.code) {
-            throw new Error("Minification failed: no result");
-        }
-        return {
-            code: result.code,
-            map: result.map,
-        };
-    }
-    const plugin = {
-        name: "uglify",
+  const {
+    include,
+    exclude,
+    hook: hookOption,
+    ...terserOptions
+  } = options || {};
+  const filter = pluginutils.createFilter(include, exclude);
+  const hook = hookOption || "transform";
+  async function minifyCode(code, defaultSourceMap) {
+    const minifyOptions = {
+      ...terserOptions,
+      sourceMap: terserOptions.sourceMap !== void 0 ? terserOptions.sourceMap : defaultSourceMap
     };
-    if (hook === "transform") {
-        plugin.transform = async function (code, id) {
-            if (!filter(id)) {
-                return null;
-            }
-            return minifyCode(code, true);
-        };
+    const result = await terser.minify(code, minifyOptions);
+    if (!result || !result.code) {
+      throw new Error("Minification failed: no result");
     }
-    else {
-        plugin.renderChunk = async function (code, chunk, outputOptions) {
-            if (!filter(chunk.fileName)) {
-                return null;
-            }
-            return minifyCode(code, !!outputOptions.sourcemap);
-        };
-    }
-    return plugin;
+    return {
+      code: result.code,
+      map: result.map
+    };
+  }
+  const plugin = {
+    name: "uglify"
+  };
+  if (hook === "transform") {
+    plugin.transform = async function(code, id) {
+      if (!filter(id)) {
+        return null;
+      }
+      return minifyCode(code, true);
+    };
+  } else {
+    plugin.renderChunk = async function(code, chunk, outputOptions) {
+      if (!filter(chunk.fileName)) {
+        return null;
+      }
+      return minifyCode(code, !!outputOptions.sourcemap);
+    };
+  }
+  return plugin;
 }
 
 exports.default = uglify;
