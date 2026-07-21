@@ -7,11 +7,24 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Tests",
-            "program": "${workspaceFolder}\\node_modules\\jest\\bin\\jest",
-            "args": [
-                "--debug"
-            ],
+            "name": "Debug Current Test File",
+            "autoAttachChildProcesses": true,
+            "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
+            "program": "${workspaceFolder}/node_modules/vitest/vitest.mjs",
+            "args": ["run", "${relativeFile}"],
+            "smartStep": true,
+            "console": "integratedTerminal"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug All Tests",
+            "autoAttachChildProcesses": true,
+            "skipFiles": ["<node_internals>/**", "**/node_modules/**"],
+            "program": "${workspaceFolder}/node_modules/vitest/vitest.mjs",
+            "args": ["run"],
+            "smartStep": true,
+            "console": "integratedTerminal"
         }
     ]
 }

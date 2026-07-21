@@ -2,6 +2,7 @@ import {
   Plugin,
   NormalizedOutputOptions,
   RenderedChunk,
+  SourceMapInput,
   TransformPluginContext,
 } from "rollup";
 import { minify, MinifyOptions } from "terser";
@@ -10,22 +11,27 @@ import { createFilter } from "@rollup/pluginutils";
 export interface IUglifyOptions extends MinifyOptions {
   include?: string | RegExp;
   exclude?: string | RegExp;
-  /** @default "renderChunk" */
+  /** @default "transform" */
   hook?: "renderChunk" | "transform";
 }
 
 function uglify(options: IUglifyOptions = {}): Plugin {
-  const filter = createFilter(options.include, options.exclude);
-  const hook = options.hook || "transform";
-  delete options.include;
-  delete options.exclude;
-  delete options.hook;
+  const {
+    include,
+    exclude,
+    hook: hookOption,
+    ...terserOptions
+  } = options || {};
+  const filter = createFilter(include, exclude);
+  const hook = hookOption || "transform";
 
   async function minifyCode(code: string, defaultSourceMap: boolean) {
     const minifyOptions = {
-      ...options,
+      ...terserOptions,
       sourceMap:
-        options.sourceMap !== undefined ? options.sourceMap : defaultSourceMap,
+        terserOptions.sourceMap !== undefined
+          ? terserOptions.sourceMap
+          : defaultSourceMap,
     };
 
     const result = await minify(code, minifyOptions);
@@ -36,7 +42,7 @@ function uglify(options: IUglifyOptions = {}): Plugin {
 
     return {
       code: result.code,
-      map: result.map as any,
+      map: result.map as SourceMapInput | undefined,
     };
   }
 

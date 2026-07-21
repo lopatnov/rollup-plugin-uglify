@@ -175,7 +175,7 @@ Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) before
 - [Rollup](https://rollupjs.org/) — bundled to ESM, CJS, and UMD formats
 - [Terser](https://terser.org/) — JavaScript minification engine
 - [@rollup/pluginutils](https://github.com/rollup/plugins/tree/master/packages/pluginutils) — include/exclude pattern filtering
-- [Jest](https://jestjs.io/) — unit testing with coverage
+- [Vitest](https://vitest.dev/) — unit testing with coverage
 
 ---
 

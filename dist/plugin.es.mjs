@@ -2,15 +2,15 @@ import { minify } from 'terser';
 import { createFilter } from '@rollup/pluginutils';
 
 function uglify(options = {}) {
-    const filter = createFilter(options.include, options.exclude);
-    const hook = options.hook || "transform";
-    delete options.include;
-    delete options.exclude;
-    delete options.hook;
+    const { include, exclude, hook: hookOption, ...terserOptions } = options || {};
+    const filter = createFilter(include, exclude);
+    const hook = hookOption || "transform";
     async function minifyCode(code, defaultSourceMap) {
         const minifyOptions = {
-            ...options,
-            sourceMap: options.sourceMap !== undefined ? options.sourceMap : defaultSourceMap,
+            ...terserOptions,
+            sourceMap: terserOptions.sourceMap !== undefined
+                ? terserOptions.sourceMap
+                : defaultSourceMap,
         };
         const result = await minify(code, minifyOptions);
         if (!result || !result.code) {

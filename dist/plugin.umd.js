@@ -5,15 +5,15 @@
 })(this, (function (exports, terser, pluginutils) { 'use strict';
 
     function uglify(options = {}) {
-        const filter = pluginutils.createFilter(options.include, options.exclude);
-        const hook = options.hook || "transform";
-        delete options.include;
-        delete options.exclude;
-        delete options.hook;
+        const { include, exclude, hook: hookOption, ...terserOptions } = options || {};
+        const filter = pluginutils.createFilter(include, exclude);
+        const hook = hookOption || "transform";
         async function minifyCode(code, defaultSourceMap) {
             const minifyOptions = {
-                ...options,
-                sourceMap: options.sourceMap !== undefined ? options.sourceMap : defaultSourceMap,
+                ...terserOptions,
+                sourceMap: terserOptions.sourceMap !== undefined
+                    ? terserOptions.sourceMap
+                    : defaultSourceMap,
             };
             const result = await terser.minify(code, minifyOptions);
             if (!result || !result.code) {
