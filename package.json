@@ -1,6 +1,6 @@
 {
   "name": "@lopatnov/rollup-plugin-uglify",
-  "version": "4.2.0",
+  "version": "4.3.0",
   "description": "A Rollup plugin for minifying JavaScript bundles using Terser",
   "author": {
     "name": "Oleksandr Lopatnov",
@@ -45,7 +45,7 @@
   "scripts": {
     "build": "rollup -c",
     "watch": "rollup -cw",
-    "test": "jest --coverage",
+    "test": "vitest run --coverage",
     "prepare": "npm i --no-save --no-package-lock terser@latest",
     "update": "npx npm-check-updates -u && npm install"
   },
@@ -60,14 +60,12 @@
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-typescript": "^12.3.0",
-    "@types/jest": "^30.0.0",
+    "@vitest/coverage-v8": "^3.2.4",
     "core-js": "^3.49.0",
-    "jest": "^30.4.2",
-    "jest-config": "^30.4.2",
     "rollup": "^4.62.2",
-    "ts-jest": "^29.4.11",
     "tslib": "^2.8.1",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "vitest": "^3.2.4"
   },
   "peerDependencies": {
     "rollup": ">=4.0.0",
