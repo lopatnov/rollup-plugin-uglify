@@ -215,4 +215,76 @@ describe("rollup-plugin-uglify", () => {
     expect(testResult).toBe(1100);
     expect(result.output[0].code.length).toBeLessThan(200);
   });
+
+  it("supports recommended renderChunk hook", async () => {
+    const bundle = await rollup({
+      input: "tests/sample.js",
+      plugins: [
+        uglify({
+          hook: "renderChunk",
+          compress: true,
+          mangle: true,
+        }),
+      ],
+    });
+
+    const result = await bundle.generate({ format: "cjs" });
+    const testResult = Function(
+      `var x = 1000; ${result.output[0].code}; return SimpleTest()`
+    )();
+
+    expect(testResult).toBe(1100);
+    expect(result.output[0].code.length).toBeLessThan(200);
+  });
+
+  it("generates source maps with renderChunk hook when sourcemap is enabled", async () => {
+    const bundle = await rollup({
+      input: "tests/sample.js",
+      plugins: [uglify({ hook: "renderChunk" })],
+    });
+
+    const result = await bundle.generate({
+      format: "cjs",
+      sourcemap: true,
+    });
+
+    expect(result.output[0].map).toBeTruthy();
+  });
+
+  it("does not mutate the options object passed by the caller", async () => {
+    const options = {
+      hook: "renderChunk" as const,
+      include: /\.js$/,
+      compress: true,
+    };
+
+    await rollup({
+      input: "tests/sample.js",
+      plugins: [uglify(options)],
+    });
+
+    expect(options).toEqual({
+      hook: "renderChunk",
+      include: /\.js$/,
+      compress: true,
+    });
+  });
+
+  it("reuses the same options object across multiple plugin instances", async () => {
+    const options = { hook: "renderChunk" as const, compress: true };
+
+    const bundle1 = await rollup({
+      input: "tests/sample.js",
+      plugins: [uglify(options)],
+    });
+    const result1 = await bundle1.generate({ format: "cjs" });
+
+    const bundle2 = await rollup({
+      input: "tests/sample.js",
+      plugins: [uglify(options)],
+    });
+    const result2 = await bundle2.generate({ format: "cjs" });
+
+    expect(result1.output[0].code).toBe(result2.output[0].code);
+  });
 });
